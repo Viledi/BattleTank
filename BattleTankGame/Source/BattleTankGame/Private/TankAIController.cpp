@@ -14,7 +14,6 @@ void  ATankAIController::BeginPlay()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AI has found palayer: %s."), *PlayerTank->GetName());
 	}
 }
 
@@ -30,3 +29,4 @@ ATank * ATankAIController::GetPlayerTank() const
 	if (!PlayerPawn) { return nullptr; }
 	return Cast<ATank>(PlayerPawn);
 }
+
