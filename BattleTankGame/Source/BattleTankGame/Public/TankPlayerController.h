@@ -22,11 +22,17 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	
+
 private:
 	ATank* GetControlledTank() const;
 	
 	//Start the tank moving the barrel so that a shot would hit where the crosshair intersicts the world
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector&) const;
+	
+	UPROPERTY(EditAnywhere)
+	float CrossHairXLocation = 0.5;
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.3333;
 
 };
