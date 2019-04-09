@@ -1,7 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/TankAIController.h"
+#include "Engine/World.h"
 
+ATankAIController::ATankAIController(const FObjectInitializer & ObjectInitializer)
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
 
 void  ATankAIController::BeginPlay()
 {
@@ -17,6 +22,14 @@ void  ATankAIController::BeginPlay()
 	}
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+	if (!GetControlledTank()) { return; }
+	
+	GetControlledTank()->AimAt(GetPlayerTank()->GetTargetLocation());	
+}
 
 ATank * ATankAIController::GetControlledTank() const
 {
@@ -29,4 +42,3 @@ ATank * ATankAIController::GetPlayerTank() const
 	if (!PlayerPawn) { return nullptr; }
 	return Cast<ATank>(PlayerPawn);
 }
-
