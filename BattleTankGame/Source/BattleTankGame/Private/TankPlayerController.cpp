@@ -33,7 +33,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
-	return Cast<ATank>(GetPawn());
+	return Cast<ATank>(GetPawn()); //Cast makes sure the pointer is valide before returning it
 }
 
 void ATankPlayerController::AimTowardsCrosshair()
@@ -48,7 +48,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 }
 
 //Get world location of linetace through crosshair, true if hits landscape
-bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
 	//Find the crosshair position in pixel coordinates
 	int32 ViewportSizeX, ViewportSizeY;
@@ -61,7 +61,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
 		//Raycast though crosshair along that LookDirection
-		GetLookVectorHitLocation(LookDirection, HitLocation);
+		GetLookVectorHitLocation(LookDirection, OutHitLocation);
 
 	}
 
